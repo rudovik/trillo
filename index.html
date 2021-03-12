@@ -32,18 +32,56 @@
         </form>
 
         <nav class="user-nav">
-          <div class="user-nav__icon-box">
-            <svg class="user-nav__icon">
-              <use xlink:href="img/sprite.svg#icon-bookmark"></use>
-            </svg>
-            <span class="user-nav__notification">7</span>
+          <div>
+            <div class="user-nav__icon-box">
+              <svg class="user-nav__icon">
+                <use xlink:href="img/sprite.svg#icon-bookmark"></use>
+              </svg>
+              <span class="user-nav__notification">7</span>
+            </div>
           </div>
-          <div class="user-nav__icon-box">
-            <svg class="user-nav__icon">
-              <use xlink:href="img/sprite.svg#icon-chat"></use>
-            </svg>
-            <span class="user-nav__notification">13</span>
+          <div class="user-nav__icon-box--chat">
+            <div class="user-nav__icon-box">
+              <svg class="user-nav__icon">
+                <use xlink:href="img/sprite.svg#icon-chat"></use>
+              </svg>
+              <span class="user-nav__notification">13</span>
+            </div>
+            <ul class="messages">
+              <h2 class="messages__title">Messenger</h2>
+              <form action="#" class="search search--messages">
+                <input
+                  type="text"
+                  class="search__input"
+                  placeholder="Search a user"
+                />
+                <button class="search__button">
+                  <svg class="search__icon">
+                    <use
+                      xlink:href="img/sprite.svg#icon-magnifying-glass"
+                    ></use>
+                  </svg>
+                </button>
+              </form>
+              <li class="messages__message">
+                <div class="messages__photo"><img src="img/vika.jpg" /></div>
+                <div class="messages__info">
+                  <div class="messages__to">Виктория Рушелюк</div>
+                  <div class="messages__text">Вы: Викуся, привет. Може...</div>
+                </div>
+                <span class="messages__time">43 min</span>
+              </li>
+              <li class="messages__message">
+                <div class="messages__photo"><img src="img/vika.jpg" /></div>
+                <div class="messages__info">
+                  <div class="messages__to">Виктория Рушелюк</div>
+                  <div class="messages__text">Вы: Викуся, привет. Може...</div>
+                </div>
+                <span class="messages__time">43 min</span>
+              </li>
+            </ul>
           </div>
+
           <div class="user-nav__user">
             <img
               src="img/user.jpg"
@@ -51,6 +89,17 @@
               class="user-nav__user-photo"
             />
             <span class="user-nav__user-name">Rudovik</span>
+            <ul class="user-nav__user-menu">
+              <li class="user-nav__user-menu-item">
+                <a class="user-nav__user-menu-link" href="#">Help</a>
+              </li>
+              <li class="user-nav__user-menu-item">
+                <a class="user-nav__user-menu-link" href="#">Settings</a>
+              </li>
+              <li class="user-nav__user-menu-item">
+                <a class="user-nav__user-menu-link" href="#">Exit</a>
+              </li>
+            </ul>
           </div>
         </nav>
       </header>
@@ -102,6 +151,7 @@
                 alt="Photo of hotel 1"
                 class="gallery__photo"
               />
+              <figcaption class="gallery__figcaption">Photo 1</figcaption>
             </figure>
             <figure class="gallery__item">
               <img
@@ -109,6 +159,7 @@
                 alt="Photo of hotel 2"
                 class="gallery__photo"
               />
+              <figcaption class="gallery__figcaption">Photo 2</figcaption>
             </figure>
             <figure class="gallery__item">
               <img
@@ -116,6 +167,7 @@
                 alt="Photo of hotel 3"
                 class="gallery__photo"
               />
+              <figcaption class="gallery__figcaption">Photo 3</figcaption>
             </figure>
           </div>
 

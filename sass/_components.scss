@@ -8,11 +8,28 @@
 ///////////////////////////////////////@at-root
 // SEARCH
 .search {
-  flex: 0 0 40%;
+  flex-basis: 40%;
 
   display: flex;
   justify-content: center;
   align-items: center;
+  // border-radius: 100px;
+
+  &--messages {
+    // justify-content: start;
+    margin-bottom: 2rem;
+  }
+
+  &--messages &__input {
+    // width: 100%;
+  }
+
+  @media only screen and (max-width: $bp-smallest) {
+    order: 1;
+    flex-basis: 90%;
+    // background-color: var(--color-grey-light-2);
+    margin: 0 auto;
+  }
 
   &__input {
     font-family: inherit;
@@ -20,11 +37,13 @@
     color: inherit;
     background-color: var(--color-grey-light-2);
     border: none;
-    padding: 0.7rem 2rem;
     border-radius: 100px;
+    padding: 0.7rem 2rem;
     width: 90%;
     transition: all 0.2s;
+    // position: relative;
     margin-right: -3.25rem;
+    margin-left: -1.25rem;
 
     &:focus {
       outline: none;
@@ -67,7 +86,8 @@
 .user-nav {
   align-self: stretch;
   display: flex;
-  // align-items: center;
+  // position: relative;
+  align-items: center;
 
   & > * {
     padding: 0 2rem;
@@ -75,13 +95,42 @@
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
+  }
+
+  & > .messages {
+    display: block;
+    height: auto;
+  }
+
+  & > .messages:hover {
+    background-color: #fff;
+  }
+
+  & > &__icon-box--chat:hover > .messages,
+  .messages:hover {
+    opacity: 1;
+    visibility: visible;
   }
 
   & > *:hover {
     background-color: var(--color-grey-light-2);
   }
 
+  &__user-name:hover + &__user-menu,
+  &__user-menu:hover {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__user-name {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+  }
+
   &__icon-box {
+    display: flex;
     position: relative;
   }
 
@@ -89,6 +138,7 @@
     height: 2.25rem;
     width: 2.25rem;
     fill: var(--color-grey-dark-2);
+    // margin-right: -1rem;
   }
 
   &__notification {
@@ -100,8 +150,10 @@
     background-color: var(--color-primary);
     color: #fff;
     position: absolute;
-    top: 1.5rem;
-    right: 1.1rem;
+    top: -1.5rem;
+    right: -1.1rem;
+    // align-self: flex-start;
+    // margin-left: -1rem;
 
     display: flex;
     justify-content: center;
@@ -113,6 +165,112 @@
     border-radius: 50%;
     margin-right: 1rem;
   }
+
+  &__user {
+    display: flex;
+  }
+
+  &__user-menu {
+    list-style: none;
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    top: 100%;
+    right: 0;
+    z-index: 100;
+    transition: opacity 0.2s, visibility 0.2s;
+    background-color: #fff;
+    padding: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+  }
+
+  &__user-menu-item {
+  }
+
+  &__user-menu-link:link,
+  &__user-menu-link:visited {
+    text-decoration: none;
+    display: block;
+    color: var(--color-grey-dark-3);
+  }
+
+  &__user-menu-link:hover {
+    color: var(--color-primary);
+  }
+}
+
+///////////////////////////////////////@at-root
+// MESSAGES
+.messages {
+  // width: 50rem;
+  position: absolute;
+  top: 100%;
+  right: 0rem;
+  z-index: 100;
+  list-style: none;
+  background-color: #fff;
+  padding: 2rem;
+  font-size: 1.5rem;
+  font-weight: normal;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s;
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  // display: flex;
+
+  &__title {
+    color: var(--color-grey-dark-2);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  &__message {
+    cursor: pointer;
+    align-items: center;
+    display: flex;
+    color: var(--color-grey-dark-2);
+    transition: all 0.5s;
+    overflow: hidden;
+    // border-radius: 10000rem;
+    // border-bottom-left-radius: 1000rem;
+
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+
+    &:hover {
+      background-color: var(--color-grey-light-2);
+      transform: scale(1.05);
+      // border: 1px solid var(--color-primary);
+    }
+  }
+
+  &__to {
+    font-size: 1.6rem;
+    color: var(--color-grey-dark-1);
+    line-height: 1.1;
+  }
+
+  &__info {
+    margin-left: 2rem;
+  }
+
+  &__text {
+    font-size: 1.4rem;
+  }
+
+  &__time {
+    margin-left: 2rem;
+    font-size: 1.3rem;
+  }
+
+  &__photo {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    overflow: hidden;
+  }
 }
 
 ///////////////////////////////////////@at-root
@@ -122,10 +280,23 @@
   list-style: none;
   margin-top: 3.5rem;
 
+  @media only screen and (max-width: $bp-medium) {
+    display: flex;
+    margin: 0;
+  }
+
   &__item {
     position: relative;
     &:not(:last:child) {
       margin-bottom: 0.5rem;
+
+      @media only screen and (max-width: $bp-medium) {
+        margin: 0;
+      }
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      flex: 1;
     }
   }
 
@@ -165,6 +336,15 @@
 
     display: flex;
     align-items: center;
+
+    @media only screen and (max-width: $bp-medium) {
+      justify-content: center;
+      padding: 2rem;
+    }
+    @media only screen and (max-width: $bp-small) {
+      flex-direction: column;
+      padding: 1.5rem 0.5rem;
+    }
   }
 
   &__icon {
@@ -172,6 +352,13 @@
     height: 1.75rem;
     margin-right: 2rem;
     fill: currentColor;
+
+    @media only screen and (max-width: $bp-small) {
+      margin-right: 0;
+      margin-bottom: 0.7rem;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
 }
 
@@ -182,6 +369,10 @@
   color: var(--color-grey-light-4);
   text-align: center;
   padding: 2.5rem;
+
+  @media only screen and (max-width: $bp-medium) {
+    display: none;
+  }
 }
 
 ///////////////////////////////////////
@@ -189,9 +380,46 @@
 .gallery {
   display: flex;
 
+  &__item {
+    position: relative;
+  }
+
+  &__item::before {
+    background-color: rgba(0, 0, 0, 0);
+    transition: all 0.3s;
+    content: '';
+    width: 100%;
+    position: absolute;
+    height: 100%;
+  }
+
+  &__item:hover::before {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  &__item:hover > &__figcaption {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
   &__photo {
     width: 100%;
     display: block;
+  }
+
+  &__figcaption {
+    border: 1px solid var(--color-primary);
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 3rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    transform: scale(0.5) translate(-50%, -50%);
+    transition: all 0.3s;
+    border-radius: 0.5rem;
   }
 }
 
@@ -208,6 +436,11 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     padding: 1.5rem 3rem;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.8rem;
+      padding: 1.25rem 2rem;
+    }
   }
 
   &__stars {
@@ -242,18 +475,30 @@
     background-color: var(--color-primary);
     color: #fff;
     margin-left: 3rem;
+
+    @media only screen and (max-width: $bp-small) {
+      padding: 0 1.5rem;
+    }
   }
 
   &__rating-average {
     font-size: 2.25rem;
     font-weight: 300;
     margin-bottom: -3px;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.8rem;
+    }
   }
 
   &__rating-count {
     font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 0.5rem;
+    }
   }
 }
 
@@ -334,15 +579,20 @@
     height: 1rem;
     width: 1rem;
     margin-right: 0.7rem;
+
     // Older browsers
-    // background-image: url('../img/chevron-thin-right.svg');
+    background-image: url('../img/chevron-thin-right.svg');
+    background-size: cover;
 
     // Newer browsers - masks
-    background-color: var(--color-primary);
-    -webkit-mask-image: url('../img/chevron-thin-right.svg');
-    -webkit-mask-size: cover;
-    mask-image: url('../img/chevron-thin-right.svg');
-    mask-size: cover;
+    @supports (-webkit-mask-image: url()) or (mask-image: url()) {
+      background-color: var(--color-primary);
+      -webkit-mask-image: url('../img/chevron-thin-right.svg');
+      -webkit-mask-size: cover;
+      mask-image: url('../img/chevron-thin-right.svg');
+      mask-size: cover;
+      background-image: none;
+    }
   }
 }
 
@@ -360,6 +610,7 @@
   }
 
   &__friends {
+    display: flex;
   }
 
   &__photo {
@@ -370,7 +621,7 @@
     border: 3px solid #fff;
 
     &:not(:last-child) {
-      margin-right: -1.5rem;
+      margin-right: -2rem;
     }
   }
 }
@@ -384,6 +635,12 @@
   margin-bottom: 3.5rem;
   position: relative;
   overflow: hidden;
+  align-self: stretch;
+
+  @media only screen and (max-width: $bp-medium) {
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
 
   &__text {
     margin-bottom: 2rem;
@@ -444,6 +701,10 @@
   padding: 3.5rem 0;
   text-align: center;
   background-color: #fff;
+
+  @media only screen and (max-width: $bp-medium) {
+    padding: 2.5rem 0;
+  }
 
   &__book-now {
     text-transform: uppercase;
